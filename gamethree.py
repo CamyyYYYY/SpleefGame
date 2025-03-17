@@ -17,10 +17,18 @@ gun = Entity(
 bullets = []
 
 player_health = 100
-health_text = Text(text=f'health: {player_health}', position=(-0.75, -0.4), scale=2, background=True)
+health_text = Text(text=f'health: {player_health}', position=(-0.75, -0.4), scale=2, background=True, color=color.green)
 
 player_score = 0
 score_text = Text(text=f'Score: {player_score}', position=(-0.75, 0.45), scale=2, background=True)
+
+lose_text = Text (
+    text="YOU LOSE!",
+    origin=(0,0),
+    scale=5,
+    color=color.red,
+    visible=False
+)
 
 class Enemy(Entity):
     def __init__(self, position=(5,1,5)):
@@ -162,8 +170,7 @@ def update():
     if player.y < -10:
         health_text.text = 'GAME OVER'
         application.pause()
-
-
+        lose_text.visible = True
 
 Sky()
 DirectionalLight().look_at(Vec3(1,-1,-1))
